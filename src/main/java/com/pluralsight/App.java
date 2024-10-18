@@ -1,5 +1,9 @@
 package com.pluralsight;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -19,22 +23,22 @@ public class App {
                 case "1":
                     depositMethod();
                     break;
-                        /* Validate the deposit amount
-                        if (depositAmount <= 0.00) {
-                            System.out.println("Deposit amount must be positive.");
-                        } */
+
                 case "2":
                     paymentMethod();
                     break;
 
-
-
                 case "3":
                     System.out.println("Ledger Menu \n"+"Choose an option: ");
                     displayLedgerScreen();
-                    userInput = scan.nextLine();
-                    break;
-
+                    int ledgerSelection = scan.nextInt();
+                        if (ledgerSelection == 1) {
+                            displayAllEntries();
+                        }
+                        if (ledgerSelection == 2) {
+                            readTransactionsFile();
+                        }
+                        break;
 
                 case "4":
                     System.out.println("Exiting the application.");
@@ -81,8 +85,66 @@ public static void paymentMethod () {
     //make payment method, put it here
     System.out.println("Enter Vendor of Deposit: ");
     String payVendor = scan.nextLine();
-    Transaction payment = new Transaction(payDescription,payVendor,paymentAmount);
+    Transaction payment = new Transaction(payDescription,payVendor,-paymentAmount);
     payment.writeToTransaction(filePath);
+}
+public static void readTransactionsFile () {
+    try {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
+        String input;
+        ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+        int count = 0;
+
+        while ((input = bufferedReader.readLine()) != null) {
+            if (input.startsWith("date")) {
+                continue;
+            }
+            if (input.trim().isEmpty()) {
+                continue;
+            }
+            String[] tokens = input.split("\\|");
+            String date = tokens[0];
+            String time = tokens[1];
+            String description = tokens[2];
+            String vendor = tokens[3];
+            double amount = Double.parseDouble(tokens[4]);
+
+            if (amount > 0)
+                transactions.add(new Transaction(tokens[2], tokens[3], Double.parseDouble(tokens[4])));
+            }
+             bufferedReader.close();
+        System.out.println("Deposits: ");
+        for (Transaction transaction : transactions) {
+            System.out.println(transaction);
+        }
+
+    } catch (IOException e) {
+        // display stack trace if there was an error
+        e.printStackTrace();
+
+    }
+}
+public static void displayAllEntries () {
+    try {
+        FileReader fileReader = new FileReader(filePath);
+
+        BufferedReader bufReader = new BufferedReader(fileReader);
+        String input;
+
+        while ((input = bufReader.readLine()) != null) {
+
+            System.out.println(input);
+        }
+
+        // close the stream and release the resources
+        bufReader.close();
+    } catch (IOException e) {
+        // display stack trace if there was an error
+        e.printStackTrace();
+    }
+}
+public static void displayAllDeposits () {
+
 }
 }
 

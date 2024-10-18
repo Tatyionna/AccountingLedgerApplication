@@ -19,14 +19,54 @@ public class Transaction {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-        this.date = now.format(dateFormatter);
-        this.time = now.format(timeFormatter);
+        this.date = date;
+        this.time = time;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDate() {
+        return this.date;
+    }
+
+    public String getTime() {
+        return this.time;
     }
 
     @Override
     public String toString() {
         return
-                this.date + '|' + this.time + '|' + this.description + '|' + this.vendor + '|' + this.amount ;
+                date + '|' + time + '|' + this.description + '|' + this.vendor + '|' + this.amount ;
     }
     public void writeToTransaction(String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {

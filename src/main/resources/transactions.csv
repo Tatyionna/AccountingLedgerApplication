@@ -1,9 +1,9 @@
 date|time|description|vendor|amount
-4-15-2023|10:13:25|ergonomic keyboard|Amazon|-89.5
-4-15-2023|11:15:00|Invoice 1001 paid|Joe|1500
-2024-10-16|16:08:14|check|lear|500.0
-2024-10-16|16:08:41|lightbill|justenergy|80.0
-2024-10-16|16:18:39|hhh|hhh|500.0
-2024-10-16|16:22:05|teethwhitening|smilesexpress|600.0
-2024-10-16|16:23:35|hair|deeshairboutique|-600.0
-2024-10-16|22:53:12|wig|luvmehair|500.0
+2023-04-15|10:13:25|ergonomic keyboard|Amazon|-89.5
+2023-04-15|11:15:00|Invoice 1001 paid|Joe|1500
+
+2024-10-17|20:24:24|Invoice|YearUp|100.0
+2024-10-17|20:25:04|Air Conditioner|AutoParts|-250.0
+null|null|Check|YearUp|200.0
+null|null|Groceries|Kroger|-100.0
+null|null|Invoice|Lear|1235.0
